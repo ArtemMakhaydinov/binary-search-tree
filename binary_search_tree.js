@@ -57,12 +57,6 @@ class Tree {
         return node;
     }
 
-    find(data, node = this.root) {
-        if (node === null || node.data === data) return node;
-        if (data < node.data) return this.find(data, node.left);
-        return this.find(data, node.right);
-    }
-
     findSuccessor(node) {
         let successor = node.data;
         while (node.left !== null) {
@@ -70,6 +64,12 @@ class Tree {
             node = node.left;
         }
         return successor;
+    }
+    
+    find(data, node = this.root) {
+        if (node === null || node.data === data) return node;
+        if (data < node.data) return this.find(data, node.left);
+        return this.find(data, node.right);
     }
 
     levelOrderIter(node = this.root, cb = null) {
